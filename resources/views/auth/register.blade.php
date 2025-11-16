@@ -61,6 +61,24 @@
                             </div>
                         </div>
 
+                        <input type="hidden" name="registered_date" id="registered_date">
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var now = new Date();
+
+    // форматируем в локальное время пользователя
+    var formatted = now.getFullYear() + "-" +
+        String(now.getMonth()+1).padStart(2, '0') + "-" +
+        String(now.getDate()).padStart(2, '0') + " " +
+        String(now.getHours()).padStart(2, '0') + ":" +
+        String(now.getMinutes()).padStart(2, '0') + ":" +
+        String(now.getSeconds()).padStart(2, '0');
+
+    document.getElementById("registered_date").value = formatted;
+});
+</script>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

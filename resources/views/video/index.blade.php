@@ -5,8 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
         	<h1 class="mb-3 text-center">Видео-уроки</h1>
-        	<div class="mb-3 ms-3">
-				<a href="{{ route('video.create') }}" class="btn btn-primary mb-3">Добавить</a>
+        	<div class="mb-5 ms-3">
+				<a href="{{ route('video.create') }}" class="btn btn-primary">Добавить</a>
+				<a class="btn btn-secondary ms-3" href="{{ route('home') }}">Назад</a>
 			</div>
             <div class="container">
             	<div class="row justify-content-start">

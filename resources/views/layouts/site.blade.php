@@ -10,14 +10,14 @@
 	<style>
 		@font-face {
 			font-family: "Roboto";
-			src: url("font/Roboto-Regular.ttf") format("truetype");
+			src: url({{ asset("font/Roboto-Regular.ttf") }}) format("truetype");
 			font-weight: 400;
 			font-style: normal;
 		}
 
 		@font-face {
 			font-family: "Roboto";
-			src: url("font/Roboto-Bold.ttf") format("truetype");
+			src: url({{ asset("font/Roboto-Bold.ttf") }}) format("truetype");
 			font-weight: 700;
 			font-style: bold;
 		}
@@ -27,13 +27,13 @@
 	<link href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css" rel="stylesheet">
 	<link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
 	<link href="https://unpkg.com/@videojs/themes@1/dist/sea/index.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
 	<!-- SCRIPTS-->
-	<script src="js/jquery.min.js"></script>
+	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="https://vjs.zencdn.net/8.23.4/video.min.js"></script>
-	<script src="js/videojs-landscape-fullscreen.js"></script>
-	<script src="js/scripts.js"></script>
+	<script src="{{ asset('js/videojs-landscape-fullscreen.js') }}"></script>
+	<script src="{{ asset('js/scripts.js') }}"></script>
 </head>
 
 <body>
@@ -42,7 +42,9 @@
 	<header class="header">
 		<div class="header-in wrapper flexed">
 			<div class="header-left">
-				<div class="logo"><img src="img/logo.png" alt="Логотип Excel Pro"></div>
+				<div class="logo">
+					<img src="{{ asset('img/logo.png') }}" alt="Логотип Excel Pro">
+				</div>
 			</div>
 			<div class="header-center">Қазақстанда №1</div>
 			<nav class="header-menu">
@@ -57,6 +59,7 @@
 						</svg>
 					</i>
 					<ul class="header-menu-list d-none">
+						<li class="hm-list-item"><a class="hml-item-link" href="{{ route('user.show') }}">Менің профилім</a></li>
 						<li class="hm-list-item"><a class="hml-item-link" href="#">Сертификат</a></li>
 						<li class="hm-list-item"><a class="hml-item-link" href="#">Сұрақ-жауап</a></li>
 						<li class="hm-list-item"><a class="hml-item-link" href="{{ route('logout') }}" onclick="event.preventDefault();
