@@ -2,9 +2,7 @@
 /node_modules
 /public/build
 /public/hot
-/public/video
 /public/storage
-/storage/videos
 /storage/*.key
 /vendor
 .env
@@ -19,3 +17,15 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Исключаем все видеофайлы из public и storage
+/public/**/*.mp4
+/public/**/*.avi
+/public/**/*.mkv
+/public/**/*.mov
+/public/**/*.webm
+/storage/**/*.mp4
+/storage/**/*.avi
+/storage/**/*.mkv
+/storage/**/*.mov
+/storage/**/*.webm
