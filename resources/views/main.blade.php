@@ -56,7 +56,10 @@
 						<li class="mbcm-list-item"><a class="mbcml-item-link" href="{{ $video->practice }}">Практикалық жұмыс</a></li>
 					</ul>
 				</div>
-				<div class="mb-card-homework"><a class="mbc-homework-test" id="test1" href="#" data-id="test1">ТЕСТ №1</a><span class="mbc-homework-score">100%</span></div>
+				<div class="mb-card-homework">
+					<button class="mbc-homework-test" id="{{ $video->id }}" data-name="test">ТЕСТ №{{ $video->id }}</button>
+					<span class="mbc-homework-score">100%</span>
+				</div>
 			</div>
 			@endforeach
 		</div>
@@ -73,16 +76,7 @@
 			<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 		</video>
 		<div class="video-close video-close-{{ $video->id }}">
-			<svg width="40" height="40" viewbox="0 -0.5 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff">
-				<defs></defs>
-				<g id="Page-1" stroke="none" stroke-width="1">
-					<g id="Dribbble-Light-Preview" transform="translate(-385.000000, -206.000000)" fill="#fff">
-						<g id="icons" transform="translate(56.000000, 160.000000)">
-							<polygon id="close_mini-[#1522]" points="334.6 49.5 337 51.6 335.4 53 333 50.9 330.6 53 329 51.6 331.4 49.5 329 47.4 330.6 46 333 48.1 335.4 46 337 47.4"></polygon>
-						</g>
-					</g>
-				</g>
-			</svg>
+			<svg width="40" height="40" viewbox="0 -0.5 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff"><defs></defs><g id="Page-1" stroke="none" stroke-width="1"><g id="Dribbble-Light-Preview" transform="translate(-385.000000, -206.000000)" fill="#fff"><g id="icons" transform="translate(56.000000, 160.000000)"><polygon id="close_mini-[#1522]" points="334.6 49.5 337 51.6 335.4 53 333 50.9 330.6 53 329 51.6 331.4 49.5 329 47.4 330.6 46 333 48.1 335.4 46 337 47.4"></polygon></g></g></g></svg>
 		</div>
 	</div>
 	<script>
@@ -132,4 +126,55 @@
 </section>
 @endforeach
 
+<!-- TEST-->
+<section class="test d-none">
+	<div class="test-in">
+		<div class="test-card">
+			<div class="test-card-in">
+				<div class="test-card-top">
+					<div class="tc-top-left" id="testNumber"></div>
+					<div class="tc-top-right" id="testQuestionNumber"></div>
+				</div>
+				<div class="test-card-head">
+					<h2 id="testQuestion"></h2>
+				</div>
+				<form class="test-card-body" id="testForm" action="">
+					<input type="hidden" name="test-user-id" id="testUserId" value="{{ Auth::user()->id }}">
+					<label data-name="test-option" data-test-label="1">
+						<input type="radio" name="answer" value="a">
+						<i class="test-tick"></i>
+						<span class="test-answer">A) <span id="testAnswerA" data-name="test-option-value"></span></span>
+					</label>
+					<label data-name="test-option" data-test-label="2">
+						<input type="radio" name="answer" value="b">
+						<i class="test-tick"></i>
+						<span class="test-answer">B) <span id="testAnswerB" data-name="test-option-value"></span></span>
+					</label>
+					<label data-name="test-option" data-test-label="3">
+						<input type="radio" name="answer" value="c">
+						<i class="test-tick"></i>
+						<span class="test-answer">C) <span id="testAnswerC" data-name="test-option-value"></span></span>
+					</label>
+					<label data-name="test-option" data-test-label="4">
+						<input type="radio" name="answer" value="d">
+						<i class="test-tick"></i>
+						<span class="test-answer">D) <span id="testAnswerD" data-name="test-option-value"></span></span>
+					</label>
+				</form>
+				<div class="test-card-footer">
+					<button class="tc-footer-btn tc-footer-btn_first d-none" id="testPrevPage" >
+						<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewbox="0 0 24 24" fill="#fff"><path d="M11,23.94L.89,14.13C.31,13.55,0,12.79,0,11.99,0,11.19,.31,10.43,.88,9.87h0S11,.06,11,.06V6.99h13v10H11v6.95Z"></path></svg>
+					</button>
+					<button class="tc-footer-btn tc-footer-btn_first tc-footer-btn_last" id="testNextPage">
+						<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewbox="0 0 24 24" fill="#fff"><path d="M11,23.94L.89,14.13C.31,13.55,0,12.79,0,11.99,0,11.19,.31,10.43,.88,9.87h0S11,.06,11,.06V6.99h13v10H11v6.95Z"></path></svg>
+					</button>
+					<button class="tc-footer-btn tc-footer-btn_first tc-footer-btn_last d-none" id="testFinish" >Тестті аяқтау</button>
+				</div>
+				<div class="test-close">
+					<svg viewbox="0 -0.5 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs></defs><g id="Page-1" stroke="none" stroke-width="1"><g id="Dribbble-Light-Preview" transform="translate(-385.000000, -206.000000)" fill="#808080"><g id="icons" transform="translate(56.000000, 160.000000)"><polygon id="close_mini-[#1522]" points="334.6 49.5 337 51.6 335.4 53 333 50.9 330.6 53 329 51.6 331.4 49.5 329 47.4 330.6 46 333 48.1 335.4 46 337 47.4"></polygon></g></g></g></svg>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 @endsection

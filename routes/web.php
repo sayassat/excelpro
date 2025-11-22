@@ -6,9 +6,12 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\TestUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +25,6 @@ use App\Http\Controllers\CertificateController;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('main');
-
-// Route::get('/home/videos', [VideoController::class, 'index'])->name('video.index');
 
 Route::prefix('home')->middleware(['onlyAdmin'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -43,12 +44,15 @@ Route::prefix('home')->middleware(['onlyAdmin'])->group(function () {
     Route::patch('/tests/{test}', [TestController::class, 'update'])->name('test.update');
     Route::delete('/tests/{test}', [TestController::class, 'destroy'])->name('test.delete');
 
+    Route::get('/questions', [QuestionController::class, 'index'])->name('question.index');
+    Route::get('/questions/create/{test}', [QuestionController::class, 'create'])->name('question.create');
+    Route::post('/questions', [QuestionController::class, 'store'])->name('question.store');
+    Route::get('/questions/{question}/edit', [QuestionController::class, 'edit'])->name('question.edit');
+    Route::patch('/questions/{question}', [QuestionController::class, 'update'])->name('question.update');
+    Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('question.delete');
+
     Route::get('/profiles', [ProfileController::class, 'index'])->name('profile.index');
 });
-
-Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/video/{filename}', [VideoController::class, 'stream'])->middleware('auth')->name('video.stream');
 
@@ -58,8 +62,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', [UserController::class, 'show'])->name('user.show');
     Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::patch('/user', [UserController::class, 'update'])->name('user.update');
-});
 
-Route::middleware('auth')->group(function () {
     Route::get('/certificates/{certificate}', [CertificateController::class, 'show'])->name('certificate.show');
 });
+
+Auth::routes();
+
+Route::get('/questions/{test}', [QuizController::class, 'index'])->name('quiz.index');
+
+Route::post('/test-user/store', [TestUserController::class, 'store'])->name('test_user.store');

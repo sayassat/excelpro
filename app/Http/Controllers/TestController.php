@@ -21,23 +21,15 @@ class TestController extends Controller
 
         $data = request()->validate([
             'test_number' => 'required|integer',
-            'question_number' => 'required|integer',
-            'question' => 'required|string',
-            'answer_a' => 'required|string',
-            'answer_b' => 'required|string',
-            'answer_c' => 'required|string',
-            'answer_d' => 'required|string',
-            'correct_answer' => 'required|string',
+            'pass' => 'required|numeric',
+            'level' => 'required|integer',
         ]);
 
-        $data['question'] = trim($data['question']);
-        $data['answer_a'] = trim($data['answer_a']);
-        $data['answer_b'] = trim($data['answer_b']);
-        $data['answer_c'] = trim($data['answer_c']);
-        $data['answer_d'] = trim($data['answer_d']);
-        $data['correct_answer'] = trim($data['correct_answer']);
+        $data['test_number'] = trim($data['test_number']);
+        $data['pass'] = trim($data['pass']);
+        $data['level'] = trim($data['level']);
         
-        $test = Test::create($data);
+        Test::create($data);
         return redirect()->route('test.index');
     }
 
@@ -52,21 +44,13 @@ class TestController extends Controller
     public function update(Test $test) {
         $data = request()->validate([
             'test_number' => 'required|integer',
-            'question_number' => 'required|integer',
-            'question' => 'required|string',
-            'answer_a' => 'required|string',
-            'answer_b' => 'required|string',
-            'answer_c' => 'required|string',
-            'answer_d' => 'required|string',
-            'correct_answer' => 'required|string',
+            'pass' => 'required|numeric',
+            'level' => 'required|integer',
         ]);
 
-        $data['question'] = trim($data['question']);
-        $data['answer_a'] = trim($data['answer_a']);
-        $data['answer_b'] = trim($data['answer_b']);
-        $data['answer_c'] = trim($data['answer_c']);
-        $data['answer_d'] = trim($data['answer_d']);
-        $data['correct_answer'] = trim($data['correct_answer']);
+        $data['test_number'] = trim($data['test_number']);
+        $data['pass'] = trim($data['pass']);
+        $data['level'] = trim($data['level']);
 
         $test->update($data);
         return redirect()->route('test.show', $test->id);

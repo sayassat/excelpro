@@ -259,7 +259,7 @@
 	<div class="video-in">
 		<h3 class="video-title">№1 сабақ. Excel-мен танысу. Интерфейс. Ұяшықтар.</h3>
 		<video class="video-js vjs-theme-sea" id="my-video" controls="" preload="auto" poster="{{ asset('img/U1.jpg') }}" data-setup='{"playbackRates": [0.5, 1, 1.5, 2]}'>
-			<source src="" type="video/mp4">
+			<source src="/video/demo.mp4" type="video/mp4">
 			<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 		</video>
 		<div class="video-close demo-close">

@@ -11,7 +11,7 @@ class MainController extends Controller
 {
     public function index() {
 
-        if (auth()->id() !== 1) {
+        if (!auth()->check()) {
             return view('start');
         }
 

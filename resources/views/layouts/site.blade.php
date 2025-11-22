@@ -7,6 +7,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<style>
 		@font-face {
 			font-family: "Roboto";
@@ -36,7 +37,7 @@
 	<script src="{{ asset('js/scripts.js') }}"></script>
 </head>
 
-<body>
+<body class="o-h">
 
 	<!-- HEADER-->
 	<header class="header">
@@ -110,6 +111,11 @@
 						</svg></i></a></div>
 		</div>
 	</footer>
+	<div class="loader-container">
+		<div class="loader-container-in">
+			<span class="loader"></span>
+		</div>
+	</div>
 </body>
 
 </html>
