@@ -63,11 +63,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::patch('/user', [UserController::class, 'update'])->name('user.update');
 
+    Route::get('/questions/{test}', [QuizController::class, 'index'])->name('quiz.index');
+    Route::post('/test-user/store', [TestUserController::class, 'store'])->name('test_user.store');
+
     Route::get('/certificates/{certificate}', [CertificateController::class, 'show'])->name('certificate.show');
 });
 
 Auth::routes();
 
-Route::get('/questions/{test}', [QuizController::class, 'index'])->name('quiz.index');
-
-Route::post('/test-user/store', [TestUserController::class, 'store'])->name('test_user.store');
+Route::get('/questions-demo', [QuizController::class, 'demo'])->name('quiz.demo');
+Route::post('/test-user-demo/show', [TestUserController::class, 'show'])->name('test_user.demo');

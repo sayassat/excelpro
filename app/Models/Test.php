@@ -22,9 +22,8 @@ class Test extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'test_user')
-                ->using(TestUser::class)
-                ->withPivot('score')
+        return $this->belongsToMany(User::class)
+                ->withPivot('score', 'highest_score', 'passed')
                 ->withTimestamps();
     }
 }

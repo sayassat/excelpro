@@ -13,5 +13,5 @@ class TestUser extends Model
     use SoftDeletes;
 
     protected $table = 'test_user';
-    protected $fillable = ['test_id', 'user_id', 'score'];
+    protected $fillable = ['test_id', 'user_id', 'score', 'highest_score', 'passed'];
 }

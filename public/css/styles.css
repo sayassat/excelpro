@@ -505,6 +505,7 @@ a.hml-item-link:hover {
 }
 
 .main-ad {
+  position: relative;
   margin-bottom: 30px;
   padding: 20px 25px;
   padding-bottom: 15px;
@@ -518,6 +519,27 @@ a.hml-item-link:hover {
   margin-bottom: 15px;
   padding-bottom: 5px;
   border-bottom: 1px solid #1E1E1E;
+}
+
+.main-ad-list_no_border {
+  display: block;
+  border-bottom: none;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.main-ad-list_no_border .mal-item-text {
+  color: #1D6F42;
+}
+
+.maina-list-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .main-buttons {
@@ -587,6 +609,23 @@ a.hml-item-link:hover {
   height: 36px;
 }
 
+.mali-text-old_price {
+  position: relative;
+  display: inline-block;
+}
+
+.mali-text-old_price:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #C00000;
+  transform: rotate(15deg);
+}
+
 .main-block {
   display: flex;
   justify-content: center;
@@ -638,9 +677,14 @@ a.hml-item-link:hover {
   cursor: pointer;
   color: #fff;
 }
+a.mbc-video-buttons {
+  color: #fff;
+}
+
 .mbc-video-buttons i {
   margin-bottom: 15px;
 }
+
 .mbc-video-buttons svg {
   display: block;
 }
@@ -896,7 +940,8 @@ a.hml-item-link:hover {
   margin-right: 0;
 }
 
-#testFinish {
+#testFinish,
+#testFinishDemo {
   background-color: #1D6F42;
 }
 
@@ -911,6 +956,73 @@ a.hml-item-link:hover {
   display: block;
   width: 40px;
   height: 40px;
+}
+
+.tc-result-head {
+  margin-bottom: 20px;
+}
+
+.tcr-head-pass,
+.tcr-head-fail {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  
+}
+
+.tcr-head-pass {
+  color: #1D6F42;
+}
+
+.tcr-head-fail {
+  color: #C00000;
+}
+
+.tc-result-info_fail {
+  color: #C00000;
+}
+
+.tc-result-info_pass {
+  color: #1D6F42;
+}
+
+.tc-result-max {
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.tcr-max-score {
+  font-weight: bold;
+}
+
+.tcr-info-score {
+  font-weight: bold;
+}
+
+.tc-result-info {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.tc-result-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.tcr-buttons-btn {
+  font-size: 20px;
+  color: #fff;
+  margin: 0 50px;
+  margin-top: 30px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: #808080;
+}
+
+.tcr-buttons-btn:hover {
+  background-color: #5B5B5B;
 }
 
 /* FOOTER */

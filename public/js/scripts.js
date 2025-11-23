@@ -50,7 +50,7 @@ $(function(){
 
 		$( ".loader-container" ).show();
 
-        var url = '/questions/' + $(this).attr('id');
+        var url = '/questions/' + $(this).attr('data-video-id');
 
         $.ajax({
 	        url: url,
@@ -132,8 +132,10 @@ $(function(){
 		if (nextQuestionNumber == questionResponse.questions.length) {
 			$('#testNextPage').addClass('d-none');
 			$('#testFinish').removeClass('d-none');
+			$('#testFinishDemo').removeClass('d-none');
 		} else {
 			$('#testFinish').addClass('d-none');
+			$('#testFinishDemo').addClass('d-none');
 			$('#testNextPage').removeClass('d-none');
 		}
 
@@ -176,8 +178,10 @@ $(function(){
 		if (nextQuestionNumber == questionResponse.questions.length) {
 			$('#testNextPage').addClass('d-none');
 			$('#testFinish').removeClass('d-none');
+			$('#testFinishDemo').removeClass('d-none');
 		} else {
 			$('#testFinish').addClass('d-none');
+			$('#testFinishDemo').addClass('d-none');
 			$('#testNextPage').removeClass('d-none');
 		}
 
@@ -191,6 +195,8 @@ $(function(){
 
 	$('#testFinish').on('click', function() {
 
+		$( ".loader-container" ).show();
+
 	    $.ajax({
 	        url: "/test-user/store",
 	        type: "POST",
@@ -201,15 +207,38 @@ $(function(){
 	        },
 	        success: function(response) {
 
-	            $('.test').addClass('d-none');
-				$('body').removeClass('o-h');
+	        	$('#testNumber').text('Тест №' + response.data.test_id);
+	        	$('.tcr-max-score').text(Number(response.data.highest_score)*100 + '%');
+
+	        	if (response.data.score >= response.data.pass) {
+	        		$('.tcr-head-pass').text(Number(response.data.score)*100 + '%');
+	        		$('.tcr-head-fail').addClass('d-none');
+	        		$('.tc-result-info_fail').addClass('d-none');
+	        	} else {
+	        		$('.tcr-head-fail').text(Number(response.data.score)*100 + '%');
+	        		$('.tcr-head-pass').addClass('d-none');
+	        		$('.tc-result-info_pass').addClass('d-none');
+	        		$('.tcr-info-score').text(Number(response.data.pass)*100 + '%');
+	        	}
+
+	        	$('[data-name="test-score-' + response.data.test_id + '"]').text(Number(response.data.highest_score)*100 + '%');
+
+				$('#testQuestionNumber').addClass('d-none');
+				$('#testForm').addClass('d-none');
+				$('.test-card-head').addClass('d-none');
+				$('.test-card-result').removeClass('d-none');
+				$('.test-card-footer').addClass('d-none');
+
+				$( ".loader-container" ).fadeOut( "slow" );
 
 				prevQuestionNumber = -1;
 				nextQuestionNumber = 1;
+				currentQuestionNumber = 0;
 				questionResponse = {};
+				testAnswers = {};
 				testAnswersTemp = {};
 
-				$('#testNumber').text('');
+				// $('#testNumber').text('');
 				$('#testQuestionNumber').text('');
 				$('#testQuestion').text('');
 				$('#testAnswerA').text('');
@@ -230,13 +259,15 @@ $(function(){
 	    });
 	});
 
-	$('.test-close').on('click', function(){
+	$('[data-name="test-close"]').on('click', function() {
 		$('.test').addClass('d-none');
 		$('body').removeClass('o-h');
 
 		prevQuestionNumber = -1;
 		nextQuestionNumber = 1;
+		currentQuestionNumber = 0;
 		questionResponse = {};
+		testAnswers = {};
 		testAnswersTemp = {};
 
 		$('#testNumber').text('');
@@ -252,7 +283,130 @@ $(function(){
 		$('#testPrevPage').addClass('d-none');
 		$('#testNextPage').removeClass('d-none');
 		$('#testFinish').addClass('d-none');
+		$('#testFinishDemo').addClass('d-none');
+
+    	$('.tcr-max-score').text('');
+    	$('.tcr-head-pass').text('');
+    	$('.tcr-head-fail').removeClass('d-none');
+	    $('.tc-result-info_fail').removeClass('d-none');
+    	$('.tcr-head-fail').text('');
+    	$('.tcr-info-score').text('');
+    	$('.tcr-head-pass').removeClass('d-none');
+    	$('.tc-result-info_pass').removeClass('d-none');
+		$('#testQuestionNumber').removeClass('d-none');
+		$('#testForm').removeClass('d-none');
+		$('.test-card-head').removeClass('d-none');
+		$('.test-card-result').addClass('d-none');
+		$('.test-card-footer').removeClass('d-none');
 	})
+
+	// TEST DEMO
+
+	$("[data-name='test-demo']").on('click', function() {
+
+		$( ".loader-container" ).show();
+
+        var url = '/questions-demo';
+
+        $.ajax({
+	        url: url,
+	        type: "GET",
+	        dataType: "json",
+	        success: function(response) {
+
+        		$('#testNumber').text('ТЕСТ №' + response.questions[0].test_id);
+        		$('#testQuestionNumber').text('Сұрақ ' + response.questions[0].question_number + '/' + response.questions.length);
+        		$('#testQuestion').text(response.questions[0].question_number + '. ' + response.questions[0].question);
+        		$('#testAnswerA').text(response.questions[0].answer_a);
+        		$('#testAnswerB').text(response.questions[0].answer_b);
+        		$('#testAnswerC').text(response.questions[0].answer_c);
+        		$('#testAnswerD').text(response.questions[0].answer_d);
+
+        		if (nextQuestionNumber == response.questions.length) {
+					$('#testNextPage').addClass('d-none');
+					$('#testFinishDemo').removeClass('d-none');
+				}
+
+        		questionResponse = response;
+
+				$( ".loader-container" ).fadeOut( "slow" );
+
+	        },
+	        error: function(xhr){
+	            console.log("Error loading page:", xhr);
+	            $('.test').addClass('d-none');
+				$( ".loader-container" ).fadeOut( "slow" );
+				$('body').removeClass('o-h');
+	        }
+	    });
+
+		$('body').addClass('o-h');
+		$('.test').removeClass('d-none');
+	});
+
+	$('#testFinishDemo').on('click', function() {
+
+		$( ".loader-container" ).show();
+
+	    $.ajax({
+	        url: "/test-user-demo/show",
+	        type: "POST",
+	        data: {
+	            test_id: questionResponse.questions[0].test_id,
+	            testAnswers: testAnswers,
+	        },
+	        success: function(response) {
+
+	        	$('#testNumber').text('Тест №' + response.data.test_id);
+
+	        	if (response.data.score >= response.data.pass) {
+	        		$('.tcr-head-pass').text(Number(response.data.score)*100 + '%');
+	        		$('.tcr-head-fail').addClass('d-none');
+	        		$('.tc-result-info_fail').addClass('d-none');
+	        	} else {
+	        		$('.tcr-head-fail').text(Number(response.data.score)*100 + '%');
+	        		$('.tcr-head-pass').addClass('d-none');
+	        		$('.tc-result-info_pass').addClass('d-none');
+	        		$('.tcr-info-score').text(Number(response.data.pass)*100 + '%');
+	        	}
+
+	        	$('[data-name="test-score-' + response.data.test_id + '"]').text(Number(response.data.score)*100 + '%');
+
+				$('#testQuestionNumber').addClass('d-none');
+				$('#testForm').addClass('d-none');
+				$('.test-card-head').addClass('d-none');
+				$('.test-card-result').removeClass('d-none');
+				$('.test-card-footer').addClass('d-none');
+
+				$( ".loader-container" ).fadeOut( "slow" );
+
+				prevQuestionNumber = -1;
+				nextQuestionNumber = 1;
+				currentQuestionNumber = 0;
+				questionResponse = {};
+				testAnswers = {};
+				testAnswersTemp = {};
+
+				// $('#testNumber').text('');
+				$('#testQuestionNumber').text('');
+				$('#testQuestion').text('');
+				$('#testAnswerA').text('');
+				$('#testAnswerB').text('');
+				$('#testAnswerC').text('');
+				$('#testAnswerD').text('');
+
+				$('input[name="answer"]').prop('checked', false);
+
+				$('#testPrevPage').addClass('d-none');
+				$('#testNextPage').removeClass('d-none');
+				$('#testFinishDemo').addClass('d-none');
+
+	        },
+	        error: function(xhr) {
+	            console.error("Error:", xhr.responseText);
+	        }
+	    });
+	});
 
 });
 
