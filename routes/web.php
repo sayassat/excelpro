@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TestUserController;
+use App\Http\Controllers\VideoUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/questions/{test}', [QuizController::class, 'index'])->name('quiz.index');
     Route::post('/test-user/store', [TestUserController::class, 'store'])->name('test_user.store');
+
+    Route::post('/video-user/store', [VideoUserController::class, 'store'])->name('video_user.store');
 
     Route::get('/certificates/{certificate}', [CertificateController::class, 'show'])->name('certificate.show');
 });

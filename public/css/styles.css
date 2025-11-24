@@ -529,7 +529,7 @@ a.hml-item-link:hover {
 }
 
 .main-ad-list_no_border .mal-item-text {
-  color: #1D6F42;
+  color: #355E3B;
 }
 
 .maina-list-close {
@@ -694,6 +694,19 @@ a.mbc-video-buttons {
 }
 .mbc-video-buttons:hover .mbcv-buttons-text {
   color: #FFE150;
+}
+
+.mbc-video-status {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  color: #fff;
+  background-color: #1D6F42;
+  border-radius: 3px;
 }
 
 .mb-card-desc {

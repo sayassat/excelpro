@@ -23,13 +23,16 @@
 				$welcome_number = rand(0, 3);
 
 				@endphp
-				<span class="mal-item-text">Қош келдіңіз, {{ Auth::user()->name }}! {{ $welcomes[$welcome_number] }}</span>
+				<span class="mal-item-text">
+					Қош келдіңіз, {{ Auth::user()->name }}! Сізге толық курс қолжетімді.
+					{{ $welcomes[$welcome_number] }}
+				</span>
 			</ul>
 		</div>
 		<div class="main-block">
 			@foreach($videos as $video)
 			<div class="main-block-card">
-				<div class="mb-card-video" id="video-{{ $video->location }}">
+				<div class="mb-card-video" id="video-{{ $video->location }}" data-video-id="{{ $video->id }}">
 					<div class="mbc-video-cover">
 						<img src="{{ asset('img/' . $video->poster . '.jpg') }}" alt="{{ $video->name }}">
 					</div>
@@ -41,6 +44,14 @@
 						</i>
 						<span class="mbcv-buttons-text">Тегін көру</span>
 					</div>
+
+					@php
+					    $userVideo = auth()->user()->videos()->find($video->id);
+					@endphp				
+
+	 				@if($userVideo && $userVideo->pivot->watched)
+						<div class="mbc-video-status">Қаралды</div>
+					@endif
 				</div>
 				<div class="mb-card-desc">
 					<h3 class="mbc-desc-title">{{ $video->name }}</h3>
@@ -120,6 +131,25 @@
 					$('.video-{{ $video->id }}').removeClass('d-none');
 
 		        	player{{ $video->id }}.play();
+
+		        	var thisEl = $(this);
+
+		        	// SAVE VIDEO_USER RECORD
+
+		        	$.ajax({
+				        url: "/video-user/store",
+				        type: "POST",
+				        data: {
+				            video_id: $(this).attr('data-video-id'),
+				            watched: 1,
+				        },
+				        success: function(response) {
+				        	thisEl.append('<div class="mbc-video-status">Қаралды</div>');
+				        },
+				        error: function(xhr) {
+				            console.error("Error:", xhr.responseText);
+				        }
+				    });
 		    });
 
 			$('.video-close-{{ $video->id }}').on('click', function(){

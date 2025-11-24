@@ -58,4 +58,11 @@ class User extends Authenticatable
                 ->withPivot('score', 'highest_score', 'passed')
                 ->withTimestamps();
     }
+
+    public function videos()
+    {
+        return $this->belongsToMany(Video::class, 'video_user', 'user_id','video_id')
+                ->withPivot('watched')
+                ->withTimestamps();
+    }
 }
