@@ -214,6 +214,11 @@ $(function(){
 	        		$('.tcr-head-pass').text(Number(response.data.score)*100 + '%');
 	        		$('.tcr-head-fail').addClass('d-none');
 	        		$('.tc-result-info_fail').addClass('d-none');
+
+	        		if (response.data.cert) {
+	        			$('.tc-result-info_pass').html('Құттықтаймыз! Cіз курсты сәтті аяқтадыңыз! <br>Сертификат мына сілтеме арқылы қолжетімді: <br><a class="certificate-link" href="/certificates/' + response.data.cert +' ">Сертификат</a>');
+	        		}
+
 	        	} else {
 	        		$('.tcr-head-fail').text(Number(response.data.score)*100 + '%');
 	        		$('.tcr-head-pass').addClass('d-none');

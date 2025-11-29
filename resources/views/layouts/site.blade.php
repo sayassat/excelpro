@@ -30,6 +30,8 @@
 	<link href="https://unpkg.com/@videojs/themes@1/dist/sea/index.css" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
+	@yield('certificate-styles')
+
 	<!-- SCRIPTS-->
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="https://vjs.zencdn.net/8.23.4/video.min.js"></script>
@@ -43,9 +45,9 @@
 	<header class="header">
 		<div class="header-in wrapper flexed">
 			<div class="header-left">
-				<div class="logo">
+				<a class="logo" href="/">
 					<img src="{{ asset('img/logo.png') }}" alt="Логотип Excel Pro">
-				</div>
+				</a>
 			</div>
 			<div class="header-center">Қазақстанда №1</div>
 			<nav class="header-menu">

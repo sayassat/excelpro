@@ -124,7 +124,7 @@ class TestUserController extends Controller
 
         if ($videoPassed && $testPassed) {
 
-            Certificate::updateOrCreate(
+            $certUser = Certificate::updateOrCreate(
                 [
                     'user_id' => $userId,
                 ],
@@ -134,6 +134,8 @@ class TestUserController extends Controller
                     'issued_at' => Carbon::today(),
                 ]
             );
+
+            $testUser['cert'] =  $certUser['id'];
 
         }
 

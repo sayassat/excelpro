@@ -22,11 +22,21 @@
 
 				$welcome_number = rand(0, 3);
 
+				$certificate = auth()->user()->certificates()->first();
+
 				@endphp
-				<span class="mal-item-text">
-					Қош келдіңіз, {{ Auth::user()->name }}! Сізге толық курс қолжетімді.
-					{{ $welcomes[$welcome_number] }}
-				</span>
+
+				@if($certificate)
+					<span class="mal-item-text">
+						Құттықтаймыз, {{ Auth::user()->name }}! Cіз курсты сәтті аяқтадыңыз! <br>Сертификат мына сілтеме арқылы қолжетімді: <br><a class="certificate-link" href="{{ route('certificate.show', $certificate->id) }}">Сертификат</a>
+					</span>
+				@else
+					<span class="mal-item-text">
+						Қош келдіңіз, {{ Auth::user()->name }}! Сізге толық курс қолжетімді.
+						{{ $welcomes[$welcome_number] }}
+					</span>
+				@endif
+
 			</ul>
 		</div>
 		<div class="main-block">

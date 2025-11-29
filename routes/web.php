@@ -13,6 +13,7 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TestUserController;
 use App\Http\Controllers\VideoUserController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +71,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/video-user/store', [VideoUserController::class, 'store'])->name('video_user.store');
 
     Route::get('/certificates/{certificate}', [CertificateController::class, 'show'])->name('certificate.show');
+    // Route::get('/certificates/{certificate}/pdf', [CertificateController::class, 'pdf'])->name('certificate.pdf');
+    // Route::get('/certificates/{certificate}/html', [CertificateController::class, 'html'])->name('certificate.html');
+    Route::post('/certificates/full_name', [CertificateController::class, 'full_name'])->name('certificate.full_name');
 });
+
+Route::get('/c/{certificate_number}', [CertificateController::class, 'guest']);
 
 Auth::routes();
 
