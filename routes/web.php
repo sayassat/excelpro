@@ -27,6 +27,7 @@ use App\Http\Controllers\ImageController;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('main');
+Route::view('/qa', 'qa.index')->name('qa.index');
 
 Route::prefix('home')->middleware(['onlyAdmin'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');

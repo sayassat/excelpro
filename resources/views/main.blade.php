@@ -27,13 +27,17 @@
 				@endphp
 
 				@if($certificate)
-					<span class="mal-item-text">
-						Құттықтаймыз, {{ Auth::user()->name }}! Cіз курсты сәтті аяқтадыңыз! <br>Сертификат мына сілтеме арқылы қолжетімді: <br><a class="certificate-link" href="{{ route('certificate.show', $certificate->id) }}">Сертификат</a>
-					</span>
+					<div style="text-align: center;">
+						<span class="mal-item-text">
+							Құттықтаймыз, {{ Auth::user()->name }}! Cіз курсты сәтті аяқтадыңыз! <br>Сертификат мына сілтеме арқылы қолжетімді: <br><a class="certificate-link" href="{{ route('certificate.show', $certificate->id) }}">Сертификат</a>
+						</span>
+					</div>
 				@else
 					<span class="mal-item-text">
 						Қош келдіңіз, {{ Auth::user()->name }}! Сізге толық курс қолжетімді.
 						{{ $welcomes[$welcome_number] }}
+						<br>
+						<span class="mal-item-text_cert"><strong>Сертификат</strong> алу үшін видео-сабақтардың барлығын көріп және тесттердің әрқайсынан кемінде 75% ұпай жинау керек.</span>
 					</span>
 				@endif
 
@@ -52,7 +56,7 @@
 								<path d="m12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm0,21c-4.963,0-9-4.038-9-9S7.037,3,12,3s9,4.038,9,9-4.037,9-9,9Zm-3-13.5l8,4.5-8,4.5V7.5Z"></path>
 							</svg>
 						</i>
-						<span class="mbcv-buttons-text">Тегін көру</span>
+						<span class="mbcv-buttons-text">Көру</span>
 					</div>
 
 					@php
@@ -98,7 +102,7 @@
 @foreach($videos as $video)
 <section class="video video-{{ $video->id }} d-none">
 	<div class="video-in">
-		<h3 class="video-title">№1 сабақ. Excel-мен танысу. Интерфейс. Ұяшықтар.</h3>
+		<h3 class="video-title">{{ $video->name }} {{ $video->description }}</h3>
 		<video class="video-js vjs-theme-sea" id="video-{{ $video->id }}" controls="" preload="auto" poster="{{ asset('img/U1.jpg') }}" data-setup='{"playbackRates": [0.5, 1, 1.5, 2]}'>
 			<source src="{{ route('video.stream', ['filename' => $video->location . '.mp4']) }}" type="video/mp4">
 			<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
@@ -154,7 +158,11 @@
 				            watched: 1,
 				        },
 				        success: function(response) {
-				        	thisEl.append('<div class="mbc-video-status">Қаралды</div>');
+				        	
+				        	if (!thisEl.has('.mbc-video-status').length) {
+				        		thisEl.append('<div class="mbc-video-status">Қаралды</div>');
+				        	}
+				        	
 				        },
 				        error: function(xhr) {
 				            console.error("Error:", xhr.responseText);

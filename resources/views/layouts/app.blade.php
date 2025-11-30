@@ -31,10 +31,45 @@
         .navbar .nav-link:hover {
             color: #fff;
         }
+        .card-header-main {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .card-header-slogan {
+            font-size: 16px;
+        }
+        .card .col-form-label {
+            font-size: 16px;
+        }
+        .card .btn {
+            font-size: 16px;
+        }
+        a.nav-link {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .navbar .navbar-toggler {
+            border-color: #fff;
+        }
+        .navbar .navbar-toggler:focus {
+            outline: none;
+            box-shadow: 0 0 0 #fff;
+        }
+        .navbar-toggler-icon {
+            background: none;
+        }
+        .navbar-toggler-icon svg {
+            display: inline-block;
+            width: 1.5em;
+            height: 1.5em;
+        }
     </style>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -44,7 +79,9 @@
                     <div class="logo"><img src="{{ asset('img/logo.png') }}" alt="Логотип Excel Pro"></div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_429_11066)"><path d="M3 6.00092H21M3 12.0009H21M3 18.0009H21" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_429_11066"><rect width="24" height="24" fill="white" transform="translate(0 0.000915527)"/></clipPath></defs></svg>
+                    </span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">

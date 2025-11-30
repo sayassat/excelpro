@@ -36,6 +36,7 @@
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="https://vjs.zencdn.net/8.23.4/video.min.js"></script>
 	<script src="{{ asset('js/videojs-landscape-fullscreen.js') }}"></script>
+	<script src="{{ asset('js/jquery.mask.min.js') }}"></script>
 	<script src="{{ asset('js/scripts.js') }}"></script>
 </head>
 
@@ -62,17 +63,20 @@
 						</svg>
 					</i>
 					<ul class="header-menu-list d-none">
-						<li class="hm-list-item"><a class="hml-item-link" href="{{ route('user.show') }}">Менің профилім</a></li>
-						<li class="hm-list-item"><a class="hml-item-link" href="#">Сертификат</a></li>
-						<li class="hm-list-item"><a class="hml-item-link" href="#">Сұрақ-жауап</a></li>
-						<li class="hm-list-item"><a class="hml-item-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Шығу</a><form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form></li>
+						<li class="hm-list-item">
+							<a class="hml-item-link" href="{{ route('user.show') }}">Менің профилім</a>
+						</li>
+						<li class="hm-list-item">
+							<a class="hml-item-link" href="{{ route('qa.index') }}">Сұрақ-жауап</a>
+						</li>
+						<li class="hm-list-item">
+							<a class="hml-item-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Шығу</a>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+						</li>
 					</ul>
 				</div>
 				@else
-				<a class="header-menu-btn" href="#">
+				<a class="header-menu-btn" href="{{ route('qa.index') }}">
 					<span>Сұрақ-жауап</span>
 					<i class="hm-btn-icon">
 						<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewbox="0 0 24 24" fill="white">

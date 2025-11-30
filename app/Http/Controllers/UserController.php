@@ -28,11 +28,11 @@ class UserController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'full_name' => 'required|string|max:255',
+            'name' => 'string|max:255',
+            'phone' => 'string|max:20',
         ]);
 
-        $user->update($request->only('name', 'full_name'));
+        $user->update($request->only('name', 'phone'));
 
         return redirect()->route('user.show')->with('success', 'Профиль обновлён!');
     }

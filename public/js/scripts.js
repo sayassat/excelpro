@@ -413,6 +413,10 @@ $(function(){
 	    });
 	});
 
+	// jQuery Mask
+
+	$('.ul-item-input_phone').mask('8 (000) 000-00-00', {placeholder: "Телефон нөміріңіз"});
+
 });
 
 $(window).on('load', function() {

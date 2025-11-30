@@ -17,6 +17,8 @@
                   <th scope="col">Имя</th>
                   <th scope="col">Полное имя</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Тел</th>
+                  <th scope="col">Согласие</th>
                   <th scope="col">Роль</th>
                   <th scope="col">Дата регистрации</th>
                   <th scope="col">Сертификаты</th>
@@ -30,6 +32,8 @@
                   <td>{{ $profile->name }}</td>
                   <td>{{ $profile->full_name }}</td>
                   <td>{{ $profile->email }}</td>
+                  <td style="white-space: nowrap;">{{ $profile->phone }}</td>
+                  <td>{{ $profile->consent }}</td>
                   <td>{{ $profile->role }}</td>
                   <td>{{ $profile->registered_date }}</td>
                   <td>

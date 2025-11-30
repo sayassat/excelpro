@@ -451,6 +451,7 @@ a.mbc-homework-test:hover,
   width: 26px;
   height: 26px;
   margin-left: 10px;
+  transition: 0.5s ease;
 }
 .header-menu-btn svg {
   width: 100%;
@@ -547,11 +548,17 @@ a.hml-item-link:hover {
   display: block;
   border-bottom: none;
   margin-bottom: 0;
-  text-align: center;
 }
 
 .main-ad-list_no_border .mal-item-text {
   color: #355E3B;
+}
+
+.mal-item-text_cert {
+  display: inline-block;
+  margin-top: 15px;
+  font-weight: normal;
+  color: #1E1E1E;
 }
 
 .maina-list-close {
@@ -729,6 +736,7 @@ a.mbc-video-buttons {
   color: #fff;
   background-color: #1D6F42;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .mb-card-desc {
@@ -1089,6 +1097,120 @@ a.footer-right-link svg {
   color: #FFE150;
 }
 
+/* USER */
+
+.user-heading {
+  font-size: 36px;
+  color: #1E1E1E;
+  font-weight: bold;
+  text-align: center;
+  background-color: #FFE150;
+  padding: 20px 15px 20px 15px;
+}
+
+.user-outer {
+  margin-top: 115px;
+  margin-bottom: 30px;
+}
+
+.user-list {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border: 2px solid #FFE150;
+  font-size: 19px;
+  color: #1E1E1E;
+}
+
+.user-list-item {
+  padding: 6px 0;
+}
+
+a.ul-item-link {
+  font-size: 18px;
+  color: #3A4FA6;
+  text-decoration: underline;
+}
+
+a.ul-item-link:hover {
+  text-decoration: none;
+}
+
+.user-buttons {
+  display: flex;
+  justify-content: start;
+  text-align: center;
+}
+
+a.user-buttons-btn,
+.user-buttons-btn  {
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: #808080;
+  color: #fff;
+  font-size: 18px;
+}
+
+a.user-buttons-btn:hover,
+.user-buttons-btn:hover {
+  background-color: #5B5B5B;
+}
+
+a.user-buttons-btn_change {
+  margin-left: 30px;
+  background-color: #1D6F42;
+}
+
+.user-buttons-btn svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.user-list_edit .user-list-item {
+  padding: 10px 0;
+}
+
+.ul-item-input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 450px;
+  font-size: 20px;
+  padding: 5px 10px;
+  border: 2px solid #1D6F42;
+  border-radius: 5px;
+}
+
+.user-buttons_edit {
+  justify-content: center;
+}
+
+.user-buttons_edit .user-buttons-btn {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Chrome, Safari, Edge */
+.ul-item-input::-webkit-input-placeholder {
+  color: gray;
+}
+
+/* Firefox */
+.ul-item-input::-moz-placeholder {
+  color: gray;
+}
+
+/* IE 10-11 */
+.ul-item-input:-ms-input-placeholder {
+  color: gray;
+}
+
+/* Стандарт */
+.ul-item-input::placeholder {
+  color: gray;
+}
+
 /* RESPONSIVE */
 @media (max-width: 920px) {
   .main-block-card {
@@ -1097,7 +1219,8 @@ a.footer-right-link svg {
   .mb-card-video {
     height: 204px;
   }
-  .main-heading {
+  .main-heading,
+  .user-heading {
     font-size: 32px;
   }
   .mal-item-text {
@@ -1235,10 +1358,12 @@ a.footer-right-link svg {
     height: 22px;
   }
   .main,
-  .certificate-outer {
+  .certificate-outer,
+  .user-outer {
     margin-top: 90px;
   }
-  .main-heading {
+  .main-heading,
+  .user-heading {
     font-size: 28px;
   }
   .main-slogan {
@@ -1315,11 +1440,13 @@ a.footer-right-link svg {
   .hml-item-link {
     padding: 5px 15px;
   }
-  .main-heading {
+  .main-heading,
+  .user-heading {
     font-size: 24px;
   }
   .main,
-  .certificate-outer {
+  .certificate-outer,
+  .user-outer {
     margin-top: 85px;
   }
   .main-slogan {
@@ -1433,10 +1560,12 @@ a.footer-right-link svg {
     padding: 7px 20px;
   }
   .main,
-  .certificate-outer {
+  .certificate-outer,
+  .user-outer {
     margin-top: 80px;
   }
-  .main-heading {
+  .main-heading,
+  .user-heading {
     font-size: 20px;
   }
   .main-slogan {
